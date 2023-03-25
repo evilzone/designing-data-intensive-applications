@@ -1,0 +1,60 @@
+Storage and retrieval
+---------------------
+
+- which database to use?
+    - Every storage engine is optimized for different use cases. Select the right storage engine for your use case
+    - As an application developer we need to have a rough idea on what the storage engine is doing under the hood
+        so that we select the right one.
+    - Tuning and optimizing pointers
+
+- there are two broad categories of databases - OLTP and OLAP each with different read patterns, write patterns,
+    user using it, data size etc.
+    - OLTP - Online transaction processing database is optimized for latency.
+        - e.g. MySQL, Oracle
+    - OLAP - Online analytical processing databases are optimized for data crunching!
+        - data warehousing - star/snowflake schema, column oriented!
+        - column compression, data cubes, optimized for reads/ queries.
+        - materialized views. lack of flexibility
+            - e.g. Hbase, Hive, Spark
+
+- row-store
+    - id, name, city, country, order_no
+    - easy to add/ modify a record
+    - might read in unnecessary data
+
+- column-store
+    - id
+    - name
+    - city
+    - country
+    - order_no
+
+    - only need to read in relevant data
+    - tuple writes require multiple accesses
+    => suitable for read-mostly, read-intensive, large data repositories
+
+- Extraction
+    - RDMS
+    - SQL Server
+    - Flat files
+- Transformation
+    - Staging Area
+- Loading
+    - data warehouse
+
+- Database index
+    - An index is an additional structure that is derived from the primary data. A well chosen index
+        optimizes for reads but slows down the write. <- your use case?
+    - simple database index is a hash based index. some issues for an index
+        - file format (encoding)
+        - deleting records
+        - crash recovery
+        - partially written records
+        - concurrency controls
+        - range queries?
+
+- types of storage engines
+    - there are two families of storage engine these databases use
+        - Log-structured: LSM trees e.g. SSTables -> HBase, Cassandra
+        - Page-oriented: B-tree -> RDBMS
+    - these are answers to limitations of disk access
