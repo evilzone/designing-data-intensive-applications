@@ -1,0 +1,104 @@
+Data models and data query languages
+------------------------------------
+
+- abstraction is providing right amount of information
+
+- layers of abstraction
+-------------------------- Software
+    - Application
+    - Algorithm
+    - Programming Language
+    - Assembly Language
+    - Machine code
+-------------------------- Hardware
+    - Instruction set Architecture
+    - Micro architecture
+    - Gates/Registers
+    - Devices (transistors)
+    - Physics
+
+
+- top to down increasing order of complexity
+- down to top increasing order of abstraction
+
+Data abstraction
+- Data structures (application layer)
+- Json (api layer)
+- Bytes (Memory/ disk)
+- Magnetic fields (Hardware)
+
+- Model a social network
+- users -> friends -> posts -> likes
+
+Relational model
+- In a typical relational database, this will likely be modeled using four different tables
+    - users, posts, friends and likes.
+
+    - users
+        - user_id: INTEGER
+        - username: VARCHAR(100)
+
+    - posts
+        - post_id: INTEGER
+        - author: INTEGER
+        - title: VARCHAR(100)
+        - content: TEXT
+        - created: TIMESTAMP
+
+    - friends
+        - user_id: INTEGER
+        - friend: INTEGER
+        - created: TIMESTAMP
+
+    - likes
+        - user_id: INTEGER
+        - post_id: INTEGER
+
+- Document based model
+    - Users
+        {
+            "user_id": "u1",
+            "username": "abhinav",
+            "friends": [
+                "u2" : ts1,
+                "u3": ts2
+            ]
+        }
+
+    - Posts
+        {
+            "post_id": "p1",
+            "author": "u1",
+            "title": "my first post",
+            "content": "this is my post",
+            "created": ts,
+            "likes": [
+                "u2"
+            ]
+        }
+- data locality of all the likes for the post
+- graph based model
+- data storage and data retrieval are the two main things to consider. Same query can be either written in 4 lines
+    or with 30 lines based on your data model.
+
+- three main categories of databases:
+    - relational database
+        - optimized for transaction and batch processing (read throughput), joins
+        - data organized as table/relations
+        - object relational mapping needed
+        - oracle, mysql, postgresSQL
+
+    - document database
+        - NoSQL - Not for SQL
+        - Flexible schemas, better performance due to locality/high write throughput
+        - mainly free and open source (Espresso, CouchDB, MongoDB)
+
+    - graph database
+        - Best suited for highly interconnected data many to many relationships
+        - social graph, web graph (neo4j, Anzograph, Sparql, Cypher)
+
+- Document databases target the use cases where data in self constrained documents and
+    relationships between one document and another are rare.
+
+- Graph databases go in the opposite direction, targeting use cases where anything is potentially
+    related to everything.
