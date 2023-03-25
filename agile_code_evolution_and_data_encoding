@@ -1,0 +1,48 @@
+Agile code evolution and data encoding
+--------------------------------------
+
+- Rolling upgrade
+    - blue green deployment
+    - user traffic
+        - load balancer
+            - code version 1 (majority users)
+                - majority infrastructure
+            - code version 2 (few users)
+
+- Code compatibility
+    - Backward compatibility:
+        - Newer code can read data that was written by older code for old and new clients.
+    - Forward compatibility:
+        - Older code can read data that was written by newer code for new and old clients.
+
+- Encoding/ Decoding
+    {
+        "username": "abhinav",
+        "favoriteNumber": 1111,
+        "interests": ["kayaking", "daydreaming"]
+    }
+
+    - encoding == serialization == marshalling
+    - decoding == deserialization == unmarshalling
+
+    - language specification formats - java.io.Serializable
+    - text based - JSON, CSV, XML
+    - binary encoding - varying parse and performance
+
+    - Text Json - 81 bytes, Binary JSON - 66 bytes, Thrift Binary - 59 bytes
+        Thrift compat - 34 bytes, Protocol buffer - 33 bytes, Avro - 32 bytes
+
+Data transfer use cases
+    - Example data structure
+
+        {
+            "username": "abhinav",
+            "favoriteNumber": 1111,
+            "interests": ["kayaking", "daydreaming"]
+        }
+
+        - to a file
+        - to a database
+        - to an external service over the network - Rest.li(json/http), SOAP/WSDL, RPC
+        - to an async server via message passing - one way communication
+            - Kafka, RabbitMQ, ActiveMQ
