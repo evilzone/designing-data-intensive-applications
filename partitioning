@@ -1,0 +1,31 @@
+Database partitioning
+---------------------
+
+- partitioning == spilling == sharding
+- why? scalability (data + user + machine)
+- best throughput and latency
+
+- e.g.
+    - 2 nodes
+    - each 4 partitions
+    - ? hot spots/ skews-IB
+    - ? key-hash bases parititon
+
+- secondary index
+- re-balancing strategies
+
+
+- request routing
+- service discovery
+- client
+- routing tier
+- zookeeper (helix): cluster management system, centralized config manangement system
+- node1, node2 ,..., noden
+- database nodes
+
+- places to put routing
+    - client
+    - routing tier
+    - node
+
+- ? routing logic placement
