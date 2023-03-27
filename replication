@@ -1,0 +1,57 @@
+Replication
+-----------
+
+- one user, one machine, one database: happy case
+- millions of users, thousands of machines, hundreds of databases
+
+- why replication is needed?
+    - process that your data is replicated or copied in a consistent across multiple databases is called replication
+    - machine failures: DB disk is full
+    - latency for global audience
+    - scale to millions of users
+    - offline/network failures
+
+- active passive model (master slave)
+    -  single leader db, multiple slave db
+    - leaders take the writes
+    - reads go to slaves
+    - writes which leader takes are propagated to the replicas
+    - leaders are responsible for replication
+    - reads >>> writes
+
+    - dichotomy
+        - synchronous vs asynchronous replication
+        - replication lag
+        - topology
+        - durability vs availability vs latency (tradeoffs)
+
+    - biggest issue with single leader, leader failing can create lot of issues and lead to manual mitigation
+    - can be automated
+
+- replication algorithms
+    - statement
+    - WAL
+    - logic based
+    - trigger based
+
+- multi leader
+    - it has multiple leaders
+    - multiple leaders can take the writes
+    - there are multiple replications
+    - these are in multiple datacenters
+    - conflict resolution
+    - multi datacenter: quorum, repair
+
+- leader less replication
+    - application owner is responsible to write to all the replicas
+    - client is responsible to read from all the replicas
+    - consistency guarantee (R + W > N)
+    - e.g. amazon dynamo
+
+    - read after write consistency
+    - monotonic reads -! time travel, write sequence of the reads
+    - consistent prefix reads - order
+    - algorithm: last writer wins
+    - eventual consistency < monotonic reads < strong consistency
+    - google docs - operational transform
+    
