@@ -1,0 +1,24 @@
+Transactions
+------------
+
+A: atomicity => all or nothing => abortability
+C: consistency => foreign key constraints
+I: isolation => serializability
+D: durability => storage + recovery guarantees
+
+Single object writes vs  multi object writes
+Application developer's huge role: concurrency
+
+Weak isolation levels
+
+1. No dirty reads (read committed)
+2. No dirty writes
+3. Snapshot isolation - repeated reads
+4. No lost updates - overwrite
+5. no write skews - premise false
+6. no phantom reads
+7. serializability
+    a. actual serialization
+        - cpu core | thread for writes, partition
+    b. two phase locking - lock vs wait
+    c. serializable snapshot isolation - abort if not serial
